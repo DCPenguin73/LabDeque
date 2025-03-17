@@ -14,7 +14,7 @@
  *        deque                 : A class that represents a deque
  *        deque::iterator       : An iterator through a deque
  * Author
- *    <your names here>
+ *    Daniel Carr, Jarom Anderson, Arlo Jolly
  ************************************************************************/
 
 #pragma once
@@ -112,8 +112,14 @@ public:
    //
    // Status
    //
-   size_t size()  const { return 99; }
-   bool   empty() const { return false; }
+   size_t size()  const { return numElements; }
+   bool   empty() const
+   {
+      if (size() == 0)
+         return true;
+      else
+         return false;
+   }
    
 private:
    // array index from deque index
