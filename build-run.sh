@@ -22,4 +22,4 @@ cmake --build .
 # Return to the original directory
 cd ..
 
-./build/LabMap
+./build/LabDeque

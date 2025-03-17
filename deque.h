@@ -91,7 +91,9 @@ public:
    }
    const T & operator[](int id) const
    {
-      return *(new T);
+      assert( 0 <= id && id < numElements );
+      assert( data[ ibFromID(id) ] != nullptr  );
+      return data[ ibFromID(id) ] [ icFromID(id) ];
    }
 
    //
@@ -112,11 +114,7 @@ public:
    //
    // Status
    //
-<<<<<<< HEAD
-   size_t size()  const { return 99; }
-   bool   empty() const { return false; }
 
-=======
    size_t size()  const { return numElements; }
    bool   empty() const
    {
@@ -126,24 +124,23 @@ public:
          return false;
    }
 
->>>>>>> daniel
 private:
    // array index from deque index
    int iaFromID(int id) const
    {
-      return -1;
+      return (id + iaFront) % (numCells * numBlocks);
    }
 
    // block index from deque index
    int ibFromID(int id) const
    {
-      return -1;
+      return iaFromID(id) / numCells;
    }
 
    // cell index from deque index
    int icFromID(int id) const
    {
-      return -1;
+      return iaFromID(id) % numCells;
    }
 
    // reallocate
@@ -332,6 +329,7 @@ void deque <T, A> ::pop_back()
 template <typename T, typename A>
 void deque <T, A> :: reallocate(int numBlocksNew)
 {
+
 }
 
 

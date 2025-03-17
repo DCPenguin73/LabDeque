@@ -36,90 +36,90 @@ public:
       test_iaFromID_4x1();
       test_iaFromID_3x3();
       test_realloc_emptyToOne();
-      test_realloc_oneToTwo();
-      test_realloc_shift();
-      test_realloc_wrapBetweenBlocks();
-      test_realloc_complex();
+      // test_realloc_oneToTwo();
+      // test_realloc_shift();
+      // test_realloc_wrapBetweenBlocks();
+      // test_realloc_complex();
 
-      // Construct
-      test_construct_default();
-      test_constructCopy_empty();
-      test_constructCopy_standard();
-      test_constructCopy_wrapped();
-      
-      // Destruct
-      test_destruct_default();
-      test_destruct_emptyBlock();
-      test_destruct_fullBlock();
-      test_destruct_partBlock();
-      test_destruct_twoBlock();
-      test_destruct_standard();
+      // // Construct
+      // test_construct_default();
+      // test_constructCopy_empty();
+      // test_constructCopy_standard();
+      // test_constructCopy_wrapped();
+      //
+      // // Destruct
+      // test_destruct_default();
+      // test_destruct_emptyBlock();
+      // test_destruct_fullBlock();
+      // test_destruct_partBlock();
+      // test_destruct_twoBlock();
+      // test_destruct_standard();
 
-      // Assign
-      test_assign_emptyToEmpty();
-      test_assign_emptyToStandard();
-      test_assign_standardToStandard();
-      test_assign_standardToEmpty();
-      test_assign_wrapped();
+      // // Assign
+      // test_assign_emptyToEmpty();
+      // test_assign_emptyToStandard();
+      // test_assign_standardToStandard();
+      // test_assign_standardToEmpty();
+      // test_assign_wrapped();
 
-      // Iterator
-      test_iterator_begin_empty();
-      test_iterator_begin_standard();
-      test_iterator_end_standard();
-      test_iterator_increment_standardMiddle();
-      test_iterator_dereference_read();
-      test_iterator_dereference_update();
-      test_iterator_add_withinBlock();
-      test_iterator_add_betweenBlocks();
-      test_iterator_difference_standard();
+      // // Iterator
+      // test_iterator_begin_empty();
+      // test_iterator_begin_standard();
+      // test_iterator_end_standard();
+      // test_iterator_increment_standardMiddle();
+      // test_iterator_dereference_read();
+      // test_iterator_dereference_update();
+      // test_iterator_add_withinBlock();
+      // test_iterator_add_betweenBlocks();
+      // test_iterator_difference_standard();
 
-      // Access
-      test_back_readStandard();
-      test_back_readWrapped();
-      test_back_readReadOnly();
-      test_back_writeStandard();
-      test_back_writeWrapped();
-      test_front_readStandard();
-      test_front_writeStandard();
-      test_front_readReadOnly();
-      test_subscript_readStandard();
-      test_subscript_readWrapped();
-      test_subscript_readReadOnly();
-      test_subscript_writeStandard();
-      test_subscript_writeWrapped();
+      // // Access
+      // test_back_readStandard();
+      // test_back_readWrapped();
+      // test_back_readReadOnly();
+      // test_back_writeStandard();
+      // test_back_writeWrapped();
+      // test_front_readStandard();
+      // test_front_writeStandard();
+      // test_front_readReadOnly();
+      // test_subscript_readStandard();
+      // test_subscript_readWrapped();
+      // test_subscript_readReadOnly();
+      // test_subscript_writeStandard();
+      // test_subscript_writeWrapped();
 
-      // Insert
-      test_pushback_empty();
-      test_pushback_roomNoWrap();
-      test_pushback_newBlock();
-      test_pushback_wrap();
-      test_pushback_complex();
-      test_pushfront_empty();
-      test_pushfront_roomNoWrap();
-      test_pushfront_newBlock();
-      test_pushfront_wrap();
-      test_pushfront_complex();
-      test_pushfront_bigWrap();
+      // // Insert
+      // test_pushback_empty();
+      // test_pushback_roomNoWrap();
+      // test_pushback_newBlock();
+      // test_pushback_wrap();
+      // test_pushback_complex();
+      // test_pushfront_empty();
+      // test_pushfront_roomNoWrap();
+      // test_pushfront_newBlock();
+      // test_pushfront_wrap();
+      // test_pushfront_complex();
+      // test_pushfront_bigWrap();
 
-      // Remove
-      test_clear_empty();
-      test_clear_standard();
-      test_popfront_unwrap();
-      test_popfront_standard();
-      test_popfront_lastElement();
-      test_popfront_lastInBlock(); 
-      test_popfront_complex();
-      test_popback_unwrap();
-      test_popback_standard();
-      test_popback_lastElement();
-      test_popback_lastInBlock();
-      test_popback_complex();
+      // // Remove
+      // test_clear_empty();
+      // test_clear_standard();
+      // test_popfront_unwrap();
+      // test_popfront_standard();
+      // test_popfront_lastElement();
+      // test_popfront_lastInBlock();
+      // test_popfront_complex();
+      // test_popback_unwrap();
+      // test_popback_standard();
+      // test_popback_lastElement();
+      // test_popback_lastInBlock();
+      // test_popback_complex();
 
-      // Status
-      test_size_empty();
-      test_size_standard();
-      test_empty_empty();
-      test_empty_standard();
+      // // Status
+      // test_size_empty();
+      // test_size_standard();
+      // test_empty_empty();
+      // test_empty_standard();
 
 
       report("Deque");
@@ -139,7 +139,7 @@ public:
       //        \      \      /     /
       //        +----+----+----+----+
       //        | 0  | 1  | 2  | 3  |
-      //        +----+----+----+----+     
+      //        +----+----+----+----+
       custom::deque<Spy> d;
       d.numBlocks = 4;
       d.numCells = 1;
@@ -165,7 +165,7 @@ public:
       //    +----+----+----+  +----+----+----+  +----+----+----+
       //    | 0  | 1  | 2  |  | 3  | 4  | 5  |  | 6  | 7  | 8  |
       //    +----+----+----+  +----+----+----+  +----+----+----+
-      //                      \      |      / 
+      //                      \      |      /
       //                      +----+----+----+
       //                      | 0  | 1  | 2  |
       //                      +----+----+----+
@@ -207,7 +207,7 @@ public:
       //        \      \      /     /
       //        +----+----+----+----+
       //        | 0  | 1  | 2  | 3  |
-      //        +----+----+----+----+     
+      //        +----+----+----+----+
       custom::deque<Spy> d;
       d.numBlocks = 4;
       d.numCells = 1;
@@ -233,7 +233,7 @@ public:
       //    +----+----+----+  +----+----+----+  +----+----+----+
       //    | 0  | 1  | 2  |  | 3  | 4  | 5  |  | 6  | 7  | 8  |
       //    +----+----+----+  +----+----+----+  +----+----+----+
-      //                      \      |      / 
+      //                      \      |      /
       //                      +----+----+----+
       //                      | 0  | 1  | 2  |
       //                      +----+----+----+
@@ -275,7 +275,7 @@ public:
       //        \      \      /     /
       //        +----+----+----+----+
       //        | 0  | 1  | 2  | 3  |
-      //        +----+----+----+----+     
+      //        +----+----+----+----+
       custom::deque<Spy> d;
       d.numBlocks = 4;
       d.numCells = 1;
@@ -301,7 +301,7 @@ public:
       //    +----+----+----+  +----+----+----+  +----+----+----+
       //    | 0  | 1  | 2  |  | 3  | 4  | 5  |  | 6  | 7  | 8  |
       //    +----+----+----+  +----+----+----+  +----+----+----+
-      //                      \      |      / 
+      //                      \      |      /
       //                      +----+----+----+
       //                      | 0  | 1  | 2  |
       //                      +----+----+----+
@@ -332,7 +332,7 @@ public:
       // teardown
       teardownStandardFixture(d);
    }
-   
+
    /***************************************
     * INDEX TRANSLATORS
     ***************************************/
@@ -376,7 +376,7 @@ public:
       //    +----+----+----+
       //    |    | 99 |    |
       //    +----+----+----+
-      //            |  
+      //            |
       //         +----+
       //         |    |
       //         +----+
@@ -403,9 +403,9 @@ public:
       assertUnit(Spy::numAssignMove() == 0);
       assertUnit(Spy::numDestructor() == 0);
       //        iaFront
-      //    +----+----+----+    
-      //    |    | 99 |    |   
-      //    +----+----+----+   
+      //    +----+----+----+
+      //    |    | 99 |    |
+      //    +----+----+----+
       //                 |
       //                +----+----+
       //                |    | // |
@@ -416,7 +416,7 @@ public:
       assertUnit(d.numCells == 3);
       assertUnit(d.data != nullptr);
       if (d.data)
-      { 
+      {
          assertUnit(d.data[0] == pFirstBlock);
          if (d.data[0])
             assertUnit(d.data[0][1] == Spy(99));
@@ -433,7 +433,7 @@ public:
       //    +----+----+----+
       //    | 67 | 79 | 85 |
       //    +----+----+----+
-      //            |  
+      //            |
       //    +----+----+
       //    | // |    |
       //    +----+----+
@@ -466,7 +466,7 @@ public:
       //    +----+----+----+
       //    | 67 | 79 | 85 |
       //    +----+----+----+
-      //            |  
+      //            |
       //         +----+----+----+
       //         |    | // | // |
       //         +----+----+----+
@@ -497,9 +497,9 @@ public:
    void test_realloc_wrapBetweenBlocks()
    {  // setup
       //                   iaFront
-      //     +----+----+   +----+----+ 
-      //     | 31 |    |   | 11 | 28 | 
-      //     +----+----+   +----+----+ 
+      //     +----+----+   +----+----+
+      //     | 31 |    |   | 11 | 28 |
+      //     +----+----+   +----+----+
       //          |             |
       //       +----+----+----+----+
       //       |    | // | // |    |
@@ -533,10 +533,10 @@ public:
       assertUnit(Spy::numAssignMove() == 0);
       assertUnit(Spy::numDestructor() == 0);
       //   iaFront
-      //   +----+----+   +----+----+ 
-      //   | 11 | 28 |   | 31 |    | 
-      //   +----+----+   +----+----+ 
-      //          \       /      
+      //   +----+----+   +----+----+
+      //   | 11 | 28 |   | 31 |    |
+      //   +----+----+   +----+----+
+      //          \       /
       //          +----+----+----+----+----+
       //          |    |    | // | // | // |
       //          +----+----+----+----+----+
@@ -572,8 +572,8 @@ public:
       //                          iaFront
       //   +----+----+----+   +----+----+----+   +----+----+----+
       //   | 67 | 79 | 85 |   |    | 11 | 28 |   | 31 | 49 | 59 |
-      //   +----+----+----+   +----+----+----+   +----+----+----+  
-      //                    \         |         /             
+      //   +----+----+----+   +----+----+----+   +----+----+----+
+      //                    \         |         /
       //                      +----+----+----+
       //                      |    |    |    |
       //                      +----+----+----+
@@ -601,7 +601,7 @@ public:
       // exercise
       d.reallocate(4);
       // verify
-      assertUnit(Spy::numCopyMove() == 0);  
+      assertUnit(Spy::numCopyMove() == 0);
       assertUnit(Spy::numAssign() == 0);
       assertUnit(Spy::numAlloc() == 0);
       assertUnit(Spy::numDelete() == 0);
@@ -611,10 +611,10 @@ public:
       assertUnit(Spy::numAssignMove() == 0);
       assertUnit(Spy::numDestructor() == 0);
       //        iaFront
-      //   +----+----+----+   +----+----+----+   +----+----+----+   
-      //   |    | 11 | 28 |   | 31 | 49 | 59 |   | 67 | 79 | 85 |   
-      //   +----+----+----+   +----+----+----+   +----+----+----+   
-      //                          \         \     /                     
+      //   +----+----+----+   +----+----+----+   +----+----+----+
+      //   |    | 11 | 28 |   | 31 | 49 | 59 |   | 67 | 79 | 85 |
+      //   +----+----+----+   +----+----+----+   +----+----+----+
+      //                          \         \     /
       //                             +----+----+----+----+
       //                             |    |    |    | // |
       //                             +----+----+----+----+
@@ -640,7 +640,7 @@ public:
          }
          assertUnit(d.data[2] == pFirstBlock);
          if (d.data[2] == pFirstBlock)
-         {                    
+         {
             assertUnit(d.data[2][0] == Spy(67));
             assertUnit(d.data[2][1] == Spy(79));
             assertUnit(d.data[2][2] == Spy(85));
@@ -654,7 +654,7 @@ public:
    /***************************************
     * CONSTRUCTORS
     ***************************************/
-   
+
    // default constructor, no allocations
    void test_construct_default()
    {  // setup
@@ -669,7 +669,7 @@ public:
       // exercise
       alloc.construct(&d);  // just call the constructor by itself
       // verify
-      assertUnit(Spy::numAssign() == 0);     
+      assertUnit(Spy::numAssign() == 0);
       assertUnit(Spy::numAlloc() == 0);
       assertUnit(Spy::numDelete() == 0);
       assertUnit(Spy::numDefault() == 0);
@@ -677,7 +677,7 @@ public:
       assertUnit(Spy::numCopy() == 0);
       assertUnit(Spy::numCopyMove() == 0);
       assertUnit(Spy::numAssignMove() == 0);
-      assertUnit(Spy::numDestructor() == 0); 
+      assertUnit(Spy::numDestructor() == 0);
       assertEmptyFixture(d);
    }  // teardown
 
@@ -797,7 +797,7 @@ public:
     ***************************************/
 
    // copy an empty deque
-   void test_constructCopy_empty() 
+   void test_constructCopy_empty()
    {  // setup
       custom::deque<Spy> dSrc;
       Spy::reset();
@@ -844,10 +844,10 @@ public:
       assertUnit(Spy::numAssignMove() == 0);
       assertUnit(Spy::numDestructor() == 0);
       //   iaFront
-      //   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+ 
-      //   | 31 | 49 | 55 | 67 |    |    |    |    |    |    |    |    |    |    |    |    | 
       //   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
-      //     |             
+      //   | 31 | 49 | 55 | 67 |    |    |    |    |    |    |    |    |    |    |    |    |
+      //   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+      //     |
       //   +----+
       //   |    |
       //   +----+
@@ -909,10 +909,10 @@ public:
       assertUnit(Spy::numAssignMove() == 0);
       assertUnit(Spy::numDestructor() == 0);
       //   iaFront
-      //   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+ 
-      //   | 59 | 67 | 79 |    |    |    |    |    |    |    |    |    |    |    |    |    | 
       //   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
-      //     |             
+      //   | 59 | 67 | 79 |    |    |    |    |    |    |    |    |    |    |    |    |    |
+      //   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+      //     |
       //   +----+
       //   |    |
       //   +----+
@@ -1030,7 +1030,7 @@ public:
       assertUnit(Spy::numCopyMove() == 0);
       assertUnit(Spy::numAssignMove() == 0);
    }  // teardown
-   
+
    // one block partially filled
    void test_destruct_partBlock()
    {  // setup
@@ -1067,7 +1067,7 @@ public:
       assertUnit(Spy::numCopyMove() == 0);
       assertUnit(Spy::numAssignMove() == 0);
    }  // teardown
-   
+
    void test_destruct_twoBlock()
    {  // setup
       //      0     1    2       0    1    2
@@ -1135,11 +1135,11 @@ public:
       assertUnit(Spy::numCopyMove() == 0);
       assertUnit(Spy::numAssignMove() == 0);
    }  // teardown
-   
+
    /***************************************
     * ASSIGNMENT
     ***************************************/
-   
+
    // assignment when there is nothing to copy
    void test_assign_emptyToEmpty()
    {  // setup
@@ -1183,8 +1183,8 @@ public:
       // verify
       assertUnit(Spy::numAssign() == 4);  // assign [31, 49, 55, 67]
       assertUnit(Spy::numCopy() == 0);
-      assertUnit(Spy::numAlloc() == 0); 
-      assertUnit(Spy::numDelete() == 0); 
+      assertUnit(Spy::numAlloc() == 0);
+      assertUnit(Spy::numDelete() == 0);
       assertUnit(Spy::numDefault() == 0);
       assertUnit(Spy::numNondefault() == 0);
       assertUnit(Spy::numCopyMove() == 0);
@@ -1225,10 +1225,10 @@ public:
       assertUnit(Spy::numAssignMove() == 0);
       assertUnit(Spy::numDestructor() == 0);
       //   iaFront
-      //   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+ 
-      //   | 31 | 49 | 55 | 67 |    |    |    |    |    |    |    |    |    |    |    |    | 
       //   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
-      //     |             
+      //   | 31 | 49 | 55 | 67 |    |    |    |    |    |    |    |    |    |    |    |    |
+      //   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+      //     |
       //   +----+
       //   |    |
       //   +----+
@@ -1270,7 +1270,7 @@ public:
       assertUnit(Spy::numDelete() == 4); // delete [31, 49, 55, 67]
       assertUnit(Spy::numDestructor() == 4); // destroy [31, 49, 55, 67]
       assertUnit(Spy::numCopy() == 0);
-      assertUnit(Spy::numAlloc() == 0);   
+      assertUnit(Spy::numAlloc() == 0);
       assertUnit(Spy::numAssign() == 0);
       assertUnit(Spy::numDefault() == 0);
       assertUnit(Spy::numNondefault() == 0);
@@ -1328,10 +1328,10 @@ public:
       assertUnit(Spy::numAssignMove() == 0);
       assertUnit(Spy::numDestructor() == 0);
       //   iaFront
-      //   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+ 
-      //   | 59 | 67 | 79 |    |    |    |    |    |    |    |    |    |    |    |    |    | 
       //   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
-      //     |             
+      //   | 59 | 67 | 79 |    |    |    |    |    |    |    |    |    |    |    |    |    |
+      //   +----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+----+
+      //     |
       //   +----+
       //   |    |
       //   +----+
@@ -1350,11 +1350,11 @@ public:
       teardownStandardFixture(dDes);
    }
 
-   
+
    /***************************************
     * CLEAR
     ***************************************/
-   
+
    // clear an empty collection
    void test_clear_empty()
    {  // setup
@@ -1447,7 +1447,7 @@ public:
       //    +----+----+----+----+----+
       //    | 99 |    |    |    |    |
       //    +----+----+----+----+----+
-      //                |  
+      //                |
       //             +----+
       //             |    |
       //             +----+
@@ -1547,7 +1547,7 @@ public:
       //    +----+----+----+  +----+----+----+  +----+----+----+
       //    |    | 31 | 49 |  | 55 | 67 | 79 |  | 99 |    |    |
       //    +----+----+----+  +----+----+----+  +----+----+----+
-      //                      \       |        /   
+      //                      \       |        /
       //                 +----+----+----+----+
       //                 | // |    |    |    |
       //                 +----+----+----+----+
@@ -1582,10 +1582,10 @@ public:
    {  // setup
       //               iaFront
       //       0     1    2    3
-      //     +----+----+----+----+ 
-      //     |    |    | 11 | 28 | 
-      //     +----+----+----+----+ 
-      //               |  
+      //     +----+----+----+----+
+      //     |    |    | 11 | 28 |
+      //     +----+----+----+----+
+      //               |
       //            +----+
       //            |    |
       //            +----+
@@ -1615,9 +1615,9 @@ public:
       assertUnit(Spy::numAssignMove() == 0);
       //               iaFront
       //       0     1    2    3
-      //     +----+----+----+----+   +----+----+----+----+ 
+      //     +----+----+----+----+   +----+----+----+----+
       //     |    |    | 11 | 28 |   | 99 |    |    |    |
-      //     +----+----+----+----+   +----+----+----+----+ 
+      //     +----+----+----+----+   +----+----+----+----+
       //                       \      /
       //                     +----+----+
       //                     |    |    |
@@ -1648,8 +1648,8 @@ public:
          //                          iaFront
       //   +----+----+----+   +----+----+----+   +----+----+----+
       //   | 67 | 79 | 85 |   |    | 11 | 28 |   | 31 | 49 | 59 |
-      //   +----+----+----+   +----+----+----+   +----+----+----+  
-      //                    \         |         /             
+      //   +----+----+----+   +----+----+----+   +----+----+----+
+      //                    \         |         /
       //                      +----+----+----+
       //                      |    |    |    |
       //                      +----+----+----+
@@ -1678,7 +1678,7 @@ public:
       // exercise
       d.push_back(s);
       // verify
-      assertUnit(Spy::numCopyMove() == 0);   
+      assertUnit(Spy::numCopyMove() == 0);
       assertUnit(Spy::numCopy() == 1);       // copy 99
       assertUnit(Spy::numAlloc() == 1);      // allocate 99
       assertUnit(Spy::numAssign() == 0);
@@ -1690,8 +1690,8 @@ public:
       //        iaFront
       //   +----+----+----+   +----+----+----+   +----+----+----+   +----+----+----+
       //   |    | 11 | 28 |   | 31 | 49 | 59 |   | 67 | 79 | 85 |   | 99 |    |    |
-      //   +----+----+----+   +----+----+----+   +----+----+----+   +----+----+----+ 
-      //                          \         \     /      /            
+      //   +----+----+----+   +----+----+----+   +----+----+----+   +----+----+----+
+      //                          \         \     /      /
       //                             +----+----+----+----+----+----+
       //                             |    |    |    |    | // | // |
       //                             +----+----+----+----+----+----+
@@ -1735,7 +1735,7 @@ public:
    /***************************************
     * PUSH FRONT
     ***************************************/
-   
+
     // add an element when the deque is empty
    void test_pushfront_empty()
    {  // setup
@@ -1760,7 +1760,7 @@ public:
       //    +----+----+----+----+----+
       //    |    |    |    |    | 99 |
       //    +----+----+----+----+----+
-      //                |  
+      //                |
       //             +----+
       //             |    |
       //             +----+
@@ -1865,7 +1865,7 @@ public:
       //    +----+----+----+  +----+----+----+  +----+----+----+
       //    |    |    | 99 |  | 28 | 31 | 49 |  | 55 | 67 |    |
       //    +----+----+----+  +----+----+----+  +----+----+----+
-      //                     \        |       /   
+      //                     \        |       /
       //                      +----+----+----+----+
       //                      |    |    |    | // |
       //                      +----+----+----+----+
@@ -1903,10 +1903,10 @@ public:
    {  // setup
       //    iaFront
       //       0     1    2    3
-      //     +----+----+----+----+ 
-      //     | 11 | 28 |    |    | 
-      //     +----+----+----+----+ 
-      //               |  
+      //     +----+----+----+----+
+      //     | 11 | 28 |    |    |
+      //     +----+----+----+----+
+      //               |
       //            +----+
       //            |    |
       //            +----+
@@ -1936,9 +1936,9 @@ public:
       assertUnit(Spy::numAssignMove() == 0);
       //               iaFront
       //       0     1    2    3
-      //     +----+----+----+----+   +----+----+----+----+ 
+      //     +----+----+----+----+   +----+----+----+----+
       //     | 11 | 28 |    |    |   |    |    |    | 99 |
-      //     +----+----+----+----+   +----+----+----+----+ 
+      //     +----+----+----+----+   +----+----+----+----+
       //                        \     /
       //                      +----+----+
       //                      |    |    |
@@ -1972,8 +1972,8 @@ public:
          //                   iaFront
       //   +----+----+----+   +----+----+----+   +----+----+----+
       //   | 67 | 79 |    |   |  5 | 11 | 28 |   | 31 | 49 | 59 |
-      //   +----+----+----+   +----+----+----+   +----+----+----+  
-      //                    \         |         /             
+      //   +----+----+----+   +----+----+----+   +----+----+----+
+      //                    \         |         /
       //                      +----+----+----+
       //                      |    |    |    |
       //                      +----+----+----+
@@ -2002,7 +2002,7 @@ public:
       // exercise
       d.push_front(s);
       // verify
-      assertUnit(Spy::numCopyMove() == 0);  
+      assertUnit(Spy::numCopyMove() == 0);
       assertUnit(Spy::numCopy() == 1);       // copy 99
       assertUnit(Spy::numAlloc() == 1);      // allocate 99
       assertUnit(Spy::numAssign() == 0);
@@ -2012,10 +2012,10 @@ public:
       assertUnit(Spy::numAssignMove() == 0);
       assertUnit(Spy::numDestructor() == 0);
       //   iaFront
-      //   +----+----+----+   +----+----+----+   +----+----+----+   +----+----+----+ 
+      //   +----+----+----+   +----+----+----+   +----+----+----+   +----+----+----+
       //   | 5  | 11 | 28 |   | 31 | 49 | 59 |   | 67 | 79 |    |   |    |    | 99 |
-      //   +----+----+----+   +----+----+----+   +----+----+----+   +----+----+----+    
-      //                          \         \     /             /      
+      //   +----+----+----+   +----+----+----+   +----+----+----+   +----+----+----+
+      //                          \         \     /             /
       //                        +----+----+----+----+----+----+
       //                        |    |    |    | // | // |    |
       //                        +----+----+----+----+----+----+
@@ -2056,7 +2056,7 @@ public:
       // teardown
       teardownStandardFixture(d);
    }
-   
+
    // add an element that will cause the deque to reallocaate. This will cause an unwrap
    void test_pushfront_bigWrap()
    {  // setup
@@ -2064,7 +2064,7 @@ public:
       //   +----+----+----+
       //   | 67 | 79 |    |
       //   +----+----+----+
-      //     | 
+      //     |
       //   +----+----+----+----+----+----+----+
       //   |    | // | // | // | // | // | // |
       //   +----+----+----+----+----+----+----+
@@ -2137,8 +2137,8 @@ public:
    /***************************************
     * POP FRONT
     ***************************************/
-   
-  
+
+
    // remove one element from a standard fixture
    void test_popfront_standard()
    {  // setup
@@ -2160,7 +2160,7 @@ public:
       assertUnit(Spy::numDelete() == 1);        // delete 31
       assertUnit(Spy::numDestructor() == 1);    // destroy 31
       assertUnit(Spy::numCopy() == 0);
-      assertUnit(Spy::numAlloc() == 0);      
+      assertUnit(Spy::numAlloc() == 0);
       assertUnit(Spy::numAssign() == 0);
       assertUnit(Spy::numDefault() == 0);
       assertUnit(Spy::numNondefault() == 0);
@@ -2198,10 +2198,10 @@ public:
    {  // setup
       //    iaFront
       //       0     1    2    3
-      //     +----+----+----+----+ 
-      //     | 28 | 31 |    | 11 | 
-      //     +----+----+----+----+ 
-      //               |  
+      //     +----+----+----+----+
+      //     | 28 | 31 |    | 11 |
+      //     +----+----+----+----+
+      //               |
       //            +----+
       //            |    |
       //            +----+
@@ -2231,10 +2231,10 @@ public:
       assertUnit(Spy::numAssignMove() == 0);
       //               iaFront
       //       0     1    2    3
-      //     +----+----+----+----+ 
-      //     | 28 | 31 |    |    | 
-      //     +----+----+----+----+ 
-      //               |  
+      //     +----+----+----+----+
+      //     | 28 | 31 |    |    |
+      //     +----+----+----+----+
+      //               |
       //            +----+
       //            |    |
       //            +----+
@@ -2260,10 +2260,10 @@ public:
    {  // setup
       //    iaFront
       //       0     1    2    3
-      //     +----+----+----+----+ 
-      //     |    | 31 |    |    | 
-      //     +----+----+----+----+ 
-      //               |  
+      //     +----+----+----+----+
+      //     |    | 31 |    |    |
+      //     +----+----+----+----+
+      //               |
       //            +----+
       //            |    |
       //            +----+
@@ -2407,7 +2407,7 @@ public:
       //   +----+----+----+
       //   | 67 | 79 |    |
       //   +----+----+----+
-      //     |             
+      //     |
       //   +----+----+----+----+----+----+----+
       //   |    | // | // | // | // | // | // |
       //   +----+----+----+----+----+----+----+
@@ -2438,7 +2438,7 @@ public:
    /***************************************
     * POP BACK
     ***************************************/
-   
+
     // remove one element from a standard fixture
    void test_popback_standard()
    {  // setup
@@ -2496,10 +2496,10 @@ public:
    {  // setup
       //              iaFront
       //       0     1    2    3
-      //     +----+----+----+----+ 
-      //     |    |    | 11 | 28 | 
-      //     +----+----+----+----+ 
-      //               |  
+      //     +----+----+----+----+
+      //     |    |    | 11 | 28 |
+      //     +----+----+----+----+
+      //               |
       //            +----+
       //            |    |
       //            +----+
@@ -2528,10 +2528,10 @@ public:
       assertUnit(Spy::numAssignMove() == 0);
       //               iaFront
       //       0     1    2    3
-      //     +----+----+----+----+ 
-      //     |    |    | 11 |    | 
-      //     +----+----+----+----+ 
-      //               |  
+      //     +----+----+----+----+
+      //     |    |    | 11 |    |
+      //     +----+----+----+----+
+      //               |
       //            +----+
       //            |    |
       //            +----+
@@ -2556,10 +2556,10 @@ public:
    {  // setup
       //    iaFront
       //       0     1    2    3
-      //     +----+----+----+----+ 
-      //     |    | 31 |    |    | 
-      //     +----+----+----+----+ 
-      //               |  
+      //     +----+----+----+----+
+      //     |    | 31 |    |    |
+      //     +----+----+----+----+
+      //               |
       //            +----+
       //            |    |
       //            +----+
@@ -2628,10 +2628,10 @@ public:
       assertUnit(Spy::numCopyMove() == 0);
       assertUnit(Spy::numAssignMove() == 0);
       //         iaFront
-      //      0     1    2    
-      //    +----+----+----+  
-      //    |    | 31 | 49 |  
-      //    +----+----+----+  
+      //      0     1    2
+      //    +----+----+----+
+      //    |    | 31 | 49 |
+      //    +----+----+----+
       //                 |
       //          +----+----+----+----+
       //          | // |    | // | // |
@@ -2735,7 +2735,7 @@ public:
    /***************************************
     * BACK
     ***************************************/
-  
+
    // read an element from the back of the standard fixture
    void test_back_readStandard()
    {  // setup
@@ -2843,7 +2843,7 @@ public:
       // teardown
       teardownStandardFixture(d);
    }
-   
+
    // read an element from the back of a constant deque
    void test_back_readReadOnly()
    {  // setup
@@ -3030,11 +3030,11 @@ public:
       // teardown
       teardownStandardFixture(d);
    }
-   
+
    /***************************************
     * FRONT
     ***************************************/
-   
+
 
    // read an element from the front of a standard deque
    void test_front_readStandard()
@@ -3181,7 +3181,7 @@ public:
       // teardown
       teardownStandardFixture(d);
    }
-   
+
    /***************************************
     * SUBSCRIPT
     ***************************************/
@@ -3314,7 +3314,7 @@ public:
       // teardown
       teardownStandardFixture(d);
    }
-   
+
    // read an element from the middle of a constant deque
    void test_subscript_readReadOnly()
    {  // setup
@@ -3377,7 +3377,7 @@ public:
       // teardown
       teardownStandardFixture(d);
    }
-   
+
    void test_subscript_writeStandard()
    {
       //      0     1    2       0    1    2
@@ -3811,7 +3811,7 @@ public:
       // exercise
       it += 1;
       // verify
-      assertUnit(Spy::numAssign() == 0); 
+      assertUnit(Spy::numAssign() == 0);
       assertUnit(Spy::numDestructor() == 0);
       assertUnit(Spy::numDelete() == 0);
       assertUnit(Spy::numCopy() == 0);

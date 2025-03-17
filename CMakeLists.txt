@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10) # Or higher as needed
 
-project(LabMap)
+project(LabDeque)
 
 # Set include directories
 include_directories(
