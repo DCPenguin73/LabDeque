@@ -2,7 +2,7 @@
  * Header:
  *    DEQUE
  * Summary:
- *    Our custom implementation of a deque 
+ *    Our custom implementation of a deque
  *      __      __     _______        __
  *     /  |    /  |   |  _____|   _  / /
  *     `| |    `| |   | |____    (_)/ /
@@ -37,10 +37,10 @@ class deque
    friend class ::TestDeque; // give unit tests access to the privates
 public:
 
-   // 
+   //
    // Construct
    //
-   deque(const A & a = A()) 
+   deque(const A & a = A())
    { data = nullptr;
    }
    deque(deque & rhs);
@@ -53,27 +53,27 @@ public:
    //
    deque & operator = (deque& rhs);
 
-   // 
+   //
    // Iterator
    //
    class iterator;
-   iterator begin() 
-   { 
-      return iterator(); 
+   iterator begin()
+   {
+      return iterator();
    }
-   iterator end()   
-   { 
-      return iterator(); 
+   iterator end()
+   {
+      return iterator();
    }
 
-   // 
+   //
    // Access
    //
-   T & front()       
-   { 
+   T & front()
+   {
       return *(new T);
    }
-   const T & front() const 
+   const T & front() const
    {
       return *(new T);
    }
@@ -91,7 +91,9 @@ public:
    }
    const T & operator[](int id) const
    {
-      return *(new T);
+      assert( 0 <= id && id < numElements );
+      assert( data[ ibFromID(id) ] != nullptr  );
+      return data[ ibFromID(id) ] [ icFromID(id) ];
    }
 
    //
@@ -112,6 +114,7 @@ public:
    //
    // Status
    //
+
    size_t size()  const { return numElements; }
    bool   empty() const
    {
@@ -120,35 +123,24 @@ public:
       else
          return false;
    }
-   
+
 private:
    // array index from deque index
    int iaFromID(int id) const
    {
-      /*assert(id >= 0 && id < numElements);
-      assert(0 <= iaFront && iaFront < numCells * numBlocks);
-      int ia = (id + iaFront) % (numCells * numBlocks);
-      assert(0 <= ia && ia < numCells * numBlocks);
-      return ia;*/
-      return -1;
+      return (id + iaFront) % (numCells * numBlocks);
    }
 
    // block index from deque index
    int ibFromID(int id) const
    {
-      /*int ib = iaFromID(id) / numCells;
-      assert(0 <= ib && ib < numBlocks);
-      return ib;*/
-      return -1;
+      return iaFromID(id) / numCells;
    }
 
    // cell index from deque index
    int icFromID(int id) const
    {
-      /*int ic = iaFromID(id) % numCells;
-      assert(0 <= ic && ic < numCells);
-      return ic;*/
-      return -1;
+      return iaFromID(id) % numCells;
    }
 
    // reallocate
@@ -181,17 +173,17 @@ class deque <T, A> ::iterator
 {
    friend class ::TestDeque; // give unit tests access to the privates
 public:
-   // 
+   //
    // Construct
    //
-   iterator() 
+   iterator()
    {
    }
-   iterator(int id, deque* d) 
+   iterator(int id, deque* d)
    {
    }
-   iterator(const iterator& rhs) 
-   { 
+   iterator(const iterator& rhs)
+   {
    }
 
    //
@@ -217,13 +209,13 @@ public:
       return *this;
    }
 
-   // 
+   //
    // Compare
    //
    bool operator != (const iterator& rhs) const { return true; }
    bool operator == (const iterator& rhs) const { return true; }
 
-   // 
+   //
    // Access
    //
    T& operator * ()
@@ -231,7 +223,7 @@ public:
       return *(new T);
    }
 
-   // 
+   //
    // Arithmetic
    //
    int operator - (iterator it) const
@@ -270,7 +262,7 @@ private:
  * call the copy constructor on each element
  ****************************************/
 template <typename T, typename A>
-deque <T, A> ::deque(deque& rhs) 
+deque <T, A> ::deque(deque& rhs)
 {
 }
 
@@ -368,6 +360,7 @@ void deque <T, A> ::pop_back()
 template <typename T, typename A>
 void deque <T, A> :: reallocate(int numBlocksNew)
 {
+
 }
 
 /*****************************************
