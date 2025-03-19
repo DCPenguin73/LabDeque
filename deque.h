@@ -360,7 +360,36 @@ void deque <T, A> ::pop_back()
 template <typename T, typename A>
 void deque <T, A> :: reallocate(int numBlocksNew)
 {
+   // allocate a new array of blocks
+   T** dataNew = new T * [numBlocksNew];
+   for (size_t ib = 0; ib < numBlocksNew; ib++)
+      dataNew[ib] = nullptr;
 
+   // copy the data from the old array to the new array
+   for (size_t ib = 0; ib < numBlocks; ib++)
+   {
+      if (data[ib] != nullptr)
+      {
+         // allocate a new block
+         dataNew[ib] = new T[numCells];
+
+         // copy the data from the old block to the new block
+         for (size_t ic = 0; ic < numCells; ic++)
+            dataNew[ib][ic] = data[ib][ic];
+
+         // deallocate the old block
+         delete[] data[ib];
+         data[ib] = nullptr;
+      }
+   }
+
+   // deallocate the old array
+   delete[] data;
+   data = nullptr;
+
+   // update the data pointer
+   data = dataNew;
+   numBlocks = numBlocksNew;  
 }
 
 /*****************************************
