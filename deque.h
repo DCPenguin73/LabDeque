@@ -329,7 +329,33 @@ void deque <T, A> ::pop_back()
 template <typename T, typename A>
 void deque <T, A> :: reallocate(int numBlocksNew)
 {
+   assert(numBlocksNew > 0 && numBlocksNew >= numBlocks);
 
+   // Allocate new array
+   T** dataNew = new T*[numBlocksNew];
+   // Initialize all memory to nullptr
+   for (int i = 0; i < numBlocksNew; i++)
+      dataNew[i] = nullptr;
+
+   // Move old elements to new array
+   for (int id = 0; id < numElements; id++)
+   {
+      // Make sure we are using array index (ia) not deque index (id)
+      size_t ia = iaFromID(id);
+      dataNew[ia] = std::move(data[ia]);
+   }
+
+   // Update numBlocks
+   numBlocks = numBlocksNew;
+
+   // Ensure iaFront is always zero
+   iaFront = 0;
+
+   // Delete the old array
+   delete[] data;
+
+   // Point data to the new array
+   data = dataNew;
 }
 
 
