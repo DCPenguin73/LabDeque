@@ -146,6 +146,9 @@ private:
    // reallocate
    void reallocate(int numBlocksNew);
 
+   // is all blocks filled?
+   bool isAllBlocksFilled() const;
+
    A    alloc;                // use alloacator for memory allocation
    size_t numCells;           // number of cells in a block
    size_t numBlocks;          // number of blocks in the data array
@@ -188,6 +191,21 @@ public:
    //
    iterator& operator = (const iterator& rhs)
    {
+      /*int itLHS = this->begin();
+      int itRHS = rhs.begin();
+
+      while (itLHS != this.end() && itRHS != rhs.end())
+      {
+         *itLHS = *itRHS;
+         ++itLHS;
+         ++itRHS;
+      }
+      this.erase(itLHS, this.end());
+      while (itRHS != rhs.end())
+      {
+         this.push_back(itRHS);
+         ++itRHS;
+      }*/
       return *this;
    }
 
@@ -302,6 +320,19 @@ void deque <T, A> ::push_front(T&& t)
 template <typename T, typename A>
 void deque <T, A> ::clear()
 {
+   /*for (int id = 0; id < numElements - 1; id++)
+   {
+      alloc.destroy(data[ibFromID(id)] + icFromID(id));
+   }
+   for (int ib = 0; ib < numBlocks; ib++)
+   {
+      if (data[ib] != nullptr)
+      {
+         delete[] data[ib];
+         data[ib] = nullptr;
+      }  
+   }
+   numElements = 0;*/
 }
 
 /*****************************************
@@ -332,7 +363,19 @@ void deque <T, A> :: reallocate(int numBlocksNew)
 
 }
 
-
+/*****************************************
+ * DEQUE :: IS ALL BLOCKS FILLED?
+ * return TRUE if all the blocks are filled
+ ****************************************/
+template <typename T, typename A>
+bool deque <T, A> ::isAllBlocksFilled() const
+{
+   // We have no choice but to check each block looking for a NULLPTR
+   for (size_t ib = 0; ib < numBlocks; ib++)
+      if (nullptr == data[ib])
+         return false;
+   return true;
+}
 
 
 } // namespace custom

@@ -121,7 +121,6 @@ public:
       // test_empty_empty();
       // test_empty_standard();
 
-
       report("Deque");
    }
 
