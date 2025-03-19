@@ -40,10 +40,10 @@ public:
    //
    // Construct
    //
-   deque(const A & a = A())
-   { data = nullptr;
-   }
+   deque(const A & a = A()) : data(nullptr), numElements(0), numBlocks(0), numCells(16), iaFront(0) {}
+
    deque(deque & rhs);
+
    ~deque()
    {
    }
@@ -92,8 +92,8 @@ public:
    const T & operator[](int id) const
    {
       assert( 0 <= id && id < numElements );
-      assert( data[ ibFromID(id) ] != nullptr  );
-      return data[ ibFromID(id) ] [ icFromID(id) ];
+      assert( nullptr != data[ ibFromID(id) ] );
+      return data[ ibFromID(id) ][ icFromID(id) ];
    }
 
    //
@@ -246,6 +246,7 @@ private:
 template <typename T, typename A>
 deque <T, A> ::deque(deque& rhs)
 {
+   // this = rhs;
 }
 
 /*****************************************
@@ -256,6 +257,25 @@ deque <T, A> ::deque(deque& rhs)
 template <typename T, typename A>
 deque <T, A> & deque <T, A> :: operator = (deque & rhs)
 {
+   // LHS is this
+   iterator itLHS = begin();
+   iterator itRHS = rhs.begin();
+
+   while (itLHS != end() && itRHS != rhs.end())
+   {
+      *itLHS = *itRHS;
+      ++itLHS;
+      ++itRHS;
+   }
+
+   // erase(itLHS, end());
+
+   while(itRHS != rhs.end())
+   {
+      push_back(*itRHS);
+      ++itRHS;
+   }
+
    return *this;
 }
 
