@@ -74,7 +74,7 @@ public:
       // test_iterator_difference_standard();
 
       // // Access
-      // test_back_readStandard();
+       //test_back_readStandard();
       // test_back_readWrapped();
       // test_back_readReadOnly();
       // test_back_writeStandard();
@@ -102,16 +102,16 @@ public:
       // test_pushfront_bigWrap();
 
       // // Remove
-      // test_clear_empty();
+       test_clear_empty();
       // test_clear_standard();
-       test_popfront_unwrap();
-      // test_popfront_standard();
-      // test_popfront_lastElement();
-      // test_popfront_lastInBlock();
-      // test_popfront_complex();
+      test_popfront_unwrap();
+      test_popfront_standard();
+      //test_popfront_lastElement();
+       //test_popfront_lastInBlock();
+       //test_popfront_complex();
        test_popback_unwrap();
        test_popback_standard();
-       test_popback_lastElement();
+       //test_popback_lastElement();
        //test_popback_lastInBlock();
        //test_popback_complex();
 

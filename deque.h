@@ -286,7 +286,7 @@ deque <T, A> & deque <T, A> :: operator = (deque & rhs)
       ++itRHS;
    }
 
-   // erase(itLHS, end());
+    //pop_back(itLHS, end());
 
    while(itRHS != rhs.end())
    {
@@ -364,12 +364,16 @@ void deque <T, A> :: pop_front()
 {
    // Remove the element
    alloc.destroy(data[ibFromID(0)] + icFromID(0));
-   // Delete the block if it is empty
-   if (numElements == 1 || (icFromID(0) == 0 && ibFromID(0) != ibFromID(numElements - 1)))
+
+   // Check if the block should be deleted
+   if (icFromID(0) == 0 && numElements > 1)
    {
       delete[] data[ibFromID(0)];
       data[ibFromID(0)] = nullptr;
    }
+
+   // Change the front index
+   iaFront = (iaFront + 1) % (numCells * numBlocks);
    numElements--;
 }
 
