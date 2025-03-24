@@ -93,7 +93,7 @@ public:
    {
       assert( 0 <= id && id < numElements );
       assert( nullptr != data[ ibFromID(id) ] );
-      return data[ ibFromID(id) ][ icFromID(id) ];
+      return data[ibFromID(id)][icFromID(id)];
    }
 
    //
@@ -350,7 +350,7 @@ void deque <T, A> ::clear()
       {
          delete[] data[ib];
          data[ib] = nullptr;
-      }  
+      }
    }
    numElements = 0;*/
 }

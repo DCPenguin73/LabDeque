@@ -82,7 +82,7 @@ public:
       // test_front_readStandard();
       // test_front_writeStandard();
       // test_front_readReadOnly();
-      // test_subscript_readStandard();
+      test_subscript_readStandard();
       // test_subscript_readWrapped();
       // test_subscript_readReadOnly();
       // test_subscript_writeStandard();
