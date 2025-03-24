@@ -41,9 +41,9 @@ public:
       // test_realloc_wrapBetweenBlocks();
       // test_realloc_complex();
 
-      // // Construct
-      // test_construct_default();
-      // test_constructCopy_empty();
+      // Construct
+      test_construct_default();
+      test_constructCopy_empty();
       // test_constructCopy_standard();
       // test_constructCopy_wrapped();
       //
@@ -115,11 +115,11 @@ public:
       // test_popback_lastInBlock();
       // test_popback_complex();
 
-      // // Status
-      // test_size_empty();
-      // test_size_standard();
-      // test_empty_empty();
-      // test_empty_standard();
+      // Status
+      test_size_empty();
+      test_size_standard();
+      test_empty_empty();
+      test_empty_standard();
 
 
       report("Deque");
