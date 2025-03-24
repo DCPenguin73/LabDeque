@@ -2,7 +2,7 @@
  * Header:
  *    DEQUE
  * Summary:
- *    Our custom implementation of a deque 
+ *    Our custom implementation of a deque
  *      __      __     _______        __
  *     /  |    /  |   |  _____|   _  / /
  *     `| |    `| |   | |____    (_)/ /
@@ -14,7 +14,7 @@
  *        deque                 : A class that represents a deque
  *        deque::iterator       : An iterator through a deque
  * Author
- *    <your names here>
+ *    Daniel Carr, Jarom Anderson, Arlo Jolly
  ************************************************************************/
 
 #pragma once
@@ -37,13 +37,13 @@ class deque
    friend class ::TestDeque; // give unit tests access to the privates
 public:
 
-   // 
+   //
    // Construct
    //
-   deque(const A & a = A()) 
-   { data = nullptr;
-   }
+   deque(const A & a = A()) : data(nullptr), numElements(0), numBlocks(0), numCells(16), iaFront(0) {}
+
    deque(deque & rhs);
+
    ~deque()
    {
    }
@@ -53,27 +53,27 @@ public:
    //
    deque & operator = (deque& rhs);
 
-   // 
+   //
    // Iterator
    //
    class iterator;
-   iterator begin() 
-   { 
-      return iterator(); 
+   iterator begin()
+   {
+      return iterator();
    }
-   iterator end()   
-   { 
-      return iterator(); 
+   iterator end()
+   {
+      return iterator();
    }
 
-   // 
+   //
    // Access
    //
-   T & front()       
-   { 
+   T & front()
+   {
       return *(new T);
    }
-   const T & front() const 
+   const T & front() const
    {
       return *(new T);
    }
@@ -91,7 +91,9 @@ public:
    }
    const T & operator[](int id) const
    {
-      return *(new T);
+      assert( 0 <= id && id < numElements );
+      assert( nullptr != data[ ibFromID(id) ] );
+      return data[ ibFromID(id) ][ icFromID(id) ];
    }
 
    //
@@ -112,30 +114,40 @@ public:
    //
    // Status
    //
-   size_t size()  const { return 99; }
-   bool   empty() const { return false; }
-   
+
+   size_t size()  const { return numElements; }
+   bool   empty() const
+   {
+      if (size() == 0)
+         return true;
+      else
+         return false;
+   }
+
 private:
    // array index from deque index
    int iaFromID(int id) const
    {
-      return -1;
+      return (id + iaFront) % (numCells * numBlocks);
    }
 
    // block index from deque index
    int ibFromID(int id) const
    {
-      return -1;
+      return iaFromID(id) / numCells;
    }
 
    // cell index from deque index
    int icFromID(int id) const
    {
-      return -1;
+      return iaFromID(id) % numCells;
    }
 
    // reallocate
    void reallocate(int numBlocksNew);
+
+   // is all blocks filled?
+   bool isAllBlocksFilled() const;
 
    A    alloc;                // use alloacator for memory allocation
    size_t numCells;           // number of cells in a block
@@ -161,17 +173,17 @@ class deque <T, A> ::iterator
 {
    friend class ::TestDeque; // give unit tests access to the privates
 public:
-   // 
+   //
    // Construct
    //
-   iterator() 
+   iterator()
    {
    }
-   iterator(int id, deque* d) 
+   iterator(int id, deque* d)
    {
    }
-   iterator(const iterator& rhs) 
-   { 
+   iterator(const iterator& rhs)
+   {
    }
 
    //
@@ -179,16 +191,31 @@ public:
    //
    iterator& operator = (const iterator& rhs)
    {
+      /*int itLHS = this->begin();
+      int itRHS = rhs.begin();
+
+      while (itLHS != this.end() && itRHS != rhs.end())
+      {
+         *itLHS = *itRHS;
+         ++itLHS;
+         ++itRHS;
+      }
+      this.erase(itLHS, this.end());
+      while (itRHS != rhs.end())
+      {
+         this.push_back(itRHS);
+         ++itRHS;
+      }*/
       return *this;
    }
 
-   // 
+   //
    // Compare
    //
    bool operator != (const iterator& rhs) const { return true; }
    bool operator == (const iterator& rhs) const { return true; }
 
-   // 
+   //
    // Access
    //
    T& operator * ()
@@ -196,7 +223,7 @@ public:
       return *(new T);
    }
 
-   // 
+   //
    // Arithmetic
    //
    int operator - (iterator it) const
@@ -235,8 +262,9 @@ private:
  * call the copy constructor on each element
  ****************************************/
 template <typename T, typename A>
-deque <T, A> ::deque(deque& rhs) 
+deque <T, A> ::deque(deque& rhs)
 {
+   // this = rhs;
 }
 
 /*****************************************
@@ -247,6 +275,25 @@ deque <T, A> ::deque(deque& rhs)
 template <typename T, typename A>
 deque <T, A> & deque <T, A> :: operator = (deque & rhs)
 {
+   // LHS is this
+   iterator itLHS = begin();
+   iterator itRHS = rhs.begin();
+
+   while (itLHS != end() && itRHS != rhs.end())
+   {
+      *itLHS = *itRHS;
+      ++itLHS;
+      ++itRHS;
+   }
+
+   // erase(itLHS, end());
+
+   while(itRHS != rhs.end())
+   {
+      push_back(*itRHS);
+      ++itRHS;
+   }
+
    return *this;
 }
 
@@ -293,6 +340,19 @@ void deque <T, A> ::push_front(T&& t)
 template <typename T, typename A>
 void deque <T, A> ::clear()
 {
+   /*for (int id = 0; id < numElements - 1; id++)
+   {
+      alloc.destroy(data[ibFromID(id)] + icFromID(id));
+   }
+   for (int ib = 0; ib < numBlocks; ib++)
+   {
+      if (data[ib] != nullptr)
+      {
+         delete[] data[ib];
+         data[ib] = nullptr;
+      }  
+   }
+   numElements = 0;*/
 }
 
 /*****************************************
@@ -320,9 +380,49 @@ void deque <T, A> ::pop_back()
 template <typename T, typename A>
 void deque <T, A> :: reallocate(int numBlocksNew)
 {
+   assert(numBlocksNew > 0 && numBlocksNew >= numBlocks);
+
+   // Allocate new array
+   T** dataNew = new T*[numBlocksNew];
+   // Initialize all memory to nullptr
+   for (int i = 0; i < numBlocksNew; i++)
+      dataNew[i] = nullptr;
+
+   // Move old elements to new array
+   for (int id = 0; id < numElements; id++)
+   {
+      // Make sure we are using array index (ia) not deque index (id)
+      size_t ia = iaFromID(id);
+      dataNew[ia] = std::move(data[ia]);
+   }
+
+   // Update numBlocks
+   numBlocks = numBlocksNew;
+
+   // Ensure iaFront is always zero
+   iaFront = 0;
+
+   // Delete the old array
+   delete[] data;
+
+   // Point data to the new array
+   data = dataNew;
 }
 
 
+/*****************************************
+ * DEQUE :: IS ALL BLOCKS FILLED?
+ * return TRUE if all the blocks are filled
+ ****************************************/
+template <typename T, typename A>
+bool deque <T, A> ::isAllBlocksFilled() const
+{
+   // We have no choice but to check each block looking for a NULLPTR
+   for (size_t ib = 0; ib < numBlocks; ib++)
+      if (nullptr == data[ib])
+         return false;
+   return true;
+}
 
 
 } // namespace custom
