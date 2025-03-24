@@ -409,14 +409,6 @@ void deque <T, A> :: reallocate(int numBlocksNew)
    data = dataNew;
 }
 
-   // deallocate the old array
-   delete[] data;
-   data = nullptr;
-
-   // update the data pointer
-   data = dataNew;
-   numBlocks = numBlocksNew;  
-}
 
 /*****************************************
  * DEQUE :: IS ALL BLOCKS FILLED?
