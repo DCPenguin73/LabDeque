@@ -40,10 +40,10 @@ public:
    //
    // Construct
    //
-   deque(const A & a = A())
-   { data = nullptr;
-   }
+   deque(const A & a = A()) : data(nullptr), numElements(0), numBlocks(0), numCells(16), iaFront(0) {}
+
    deque(deque & rhs);
+
    ~deque()
    {
    }
@@ -92,8 +92,8 @@ public:
    const T & operator[](int id) const
    {
       assert( 0 <= id && id < numElements );
-      assert( data[ ibFromID(id) ] != nullptr  );
-      return data[ ibFromID(id) ] [ icFromID(id) ];
+      assert( nullptr != data[ ibFromID(id) ] );
+      return data[ ibFromID(id) ][ icFromID(id) ];
    }
 
    //
@@ -264,6 +264,7 @@ private:
 template <typename T, typename A>
 deque <T, A> ::deque(deque& rhs)
 {
+   // this = rhs;
 }
 
 /*****************************************
@@ -274,6 +275,25 @@ deque <T, A> ::deque(deque& rhs)
 template <typename T, typename A>
 deque <T, A> & deque <T, A> :: operator = (deque & rhs)
 {
+   // LHS is this
+   iterator itLHS = begin();
+   iterator itRHS = rhs.begin();
+
+   while (itLHS != end() && itRHS != rhs.end())
+   {
+      *itLHS = *itRHS;
+      ++itLHS;
+      ++itRHS;
+   }
+
+   // erase(itLHS, end());
+
+   while(itRHS != rhs.end())
+   {
+      push_back(*itRHS);
+      ++itRHS;
+   }
+
    return *this;
 }
 
@@ -360,28 +380,34 @@ void deque <T, A> ::pop_back()
 template <typename T, typename A>
 void deque <T, A> :: reallocate(int numBlocksNew)
 {
-   // allocate a new array of blocks
-   T** dataNew = new T * [numBlocksNew];
-   for (size_t ib = 0; ib < numBlocksNew; ib++)
-      dataNew[ib] = nullptr;
+   assert(numBlocksNew > 0 && numBlocksNew >= numBlocks);
 
-   // copy the data from the old array to the new array
-   for (size_t ib = 0; ib < numBlocks; ib++)
+   // Allocate new array
+   T** dataNew = new T*[numBlocksNew];
+   // Initialize all memory to nullptr
+   for (int i = 0; i < numBlocksNew; i++)
+      dataNew[i] = nullptr;
+
+   // Move old elements to new array
+   for (int id = 0; id < numElements; id++)
    {
-      if (data[ib] != nullptr)
-      {
-         // allocate a new block
-         dataNew[ib] = new T[numCells];
-
-         // copy the data from the old block to the new block
-         for (size_t ic = 0; ic < numCells; ic++)
-            dataNew[ib][ic] = data[ib][ic];
-
-         // deallocate the old block
-         delete[] data[ib];
-         data[ib] = nullptr;
-      }
+      // Make sure we are using array index (ia) not deque index (id)
+      size_t ia = iaFromID(id);
+      dataNew[ia] = std::move(data[ia]);
    }
+
+   // Update numBlocks
+   numBlocks = numBlocksNew;
+
+   // Ensure iaFront is always zero
+   iaFront = 0;
+
+   // Delete the old array
+   delete[] data;
+
+   // Point data to the new array
+   data = dataNew;
+}
 
    // deallocate the old array
    delete[] data;
