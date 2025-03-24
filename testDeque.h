@@ -56,7 +56,7 @@ public:
       // test_destruct_standard();
 
       // // Assign
-      // test_assign_emptyToEmpty();
+       //test_assign_emptyToEmpty();
       // test_assign_emptyToStandard();
       // test_assign_standardToStandard();
       // test_assign_standardToEmpty();
@@ -82,7 +82,7 @@ public:
       // test_front_readStandard();
       // test_front_writeStandard();
       // test_front_readReadOnly();
-      // test_subscript_readStandard();
+       //test_subscript_readStandard();
       // test_subscript_readWrapped();
       // test_subscript_readReadOnly();
       // test_subscript_writeStandard();
@@ -104,16 +104,16 @@ public:
       // // Remove
       // test_clear_empty();
       // test_clear_standard();
-      // test_popfront_unwrap();
+       test_popfront_unwrap();
       // test_popfront_standard();
       // test_popfront_lastElement();
       // test_popfront_lastInBlock();
       // test_popfront_complex();
-      // test_popback_unwrap();
-      // test_popback_standard();
-      // test_popback_lastElement();
-      // test_popback_lastInBlock();
-      // test_popback_complex();
+       test_popback_unwrap();
+       test_popback_standard();
+       test_popback_lastElement();
+       //test_popback_lastInBlock();
+       //test_popback_complex();
 
       // Status
       test_size_empty();

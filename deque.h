@@ -362,6 +362,15 @@ void deque <T, A> ::clear()
 template <typename T, typename A>
 void deque <T, A> :: pop_front()
 {
+   // Remove the element
+   alloc.destroy(data[ibFromID(0)] + icFromID(0));
+   // Delete the block if it is empty
+   if (numElements == 1 || (icFromID(0) == 0 && ibFromID(0) != ibFromID(numElements - 1)))
+   {
+      delete[] data[ibFromID(0)];
+      data[ibFromID(0)] = nullptr;
+   }
+   numElements--;
 }
 
 /*****************************************
@@ -371,6 +380,16 @@ void deque <T, A> :: pop_front()
 template <typename T, typename A>
 void deque <T, A> ::pop_back()
 {
+   int idRemove = numElements - 1;
+   // Remove the element
+   alloc.destroy(data[ibFromID(idRemove)] + icFromID(idRemove));
+   // Delete the block if it is empty
+   if (numElements == 1 || (icFromID(idRemove) == 0 && ibFromID(idRemove) != ibFromID(0)))
+   {
+      delete[] data[ibFromID(idRemove)];
+      data[ibFromID(idRemove)] = nullptr;
+   }
+   numElements--;
 }
 
 /*****************************************
@@ -408,6 +427,7 @@ void deque <T, A> :: reallocate(int numBlocksNew)
    // Point data to the new array
    data = dataNew;
 }
+
 
 
 /*****************************************
